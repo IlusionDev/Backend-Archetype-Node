@@ -7,7 +7,8 @@
     "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec ts-node src/bin/www.ts",
     "tsc": "tsc",
     "type-check:watch": "npm run type-check -- --watch",
-    "build": "npm run build:types && npm run build:js"
+    "build": "tsc",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -41,6 +42,7 @@
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "ts-node": "^8.5.4",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4"
   }
 }
