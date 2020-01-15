@@ -3,3 +3,4 @@ lib
 libts
 dist
 *.log
+ormconfig.json

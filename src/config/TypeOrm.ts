@@ -1,13 +1,11 @@
-import {createConnection, Connection, getConnection} from "typeorm";
+import { createConnection, Connection, getConnection } from 'typeorm'
 
+export async function getConnectionOrCreate (): Promise<Connection> {
+  const connection: Connection = await createConnection()
 
-
-export default async function getConnectionOrCreate(): Promise<Connection> {
-    const connection: Connection = await createConnection();
-
-    return connection;
+  return connection
 }
 
-export function getManager() {
-    return getConnection().manager;
+export function getManager () {
+  return getConnection().manager
 }
