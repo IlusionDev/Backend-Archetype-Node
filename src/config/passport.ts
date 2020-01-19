@@ -20,14 +20,15 @@ interface Options {
 
 const opts: Options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'secret',
-  issuer: 'accounts.examplesoft.com',
-  audience: 'yoursite.net',
+  secretOrKey: process.env.JWT_SECRET,
+  issuer: process.env.JWT_ISSUER,
+  audience: process.env.JWT_AUDIENCE,
   ignoreExpiration: false
 }
 
 passport.use(
   new JwtStrategy(opts, function (jwtPayload, done) {
+    console.log(jwtPayload)
     userRepository
       .findOne(jwtPayload.sub)
       .then((user: User) => {

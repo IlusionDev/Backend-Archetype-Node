@@ -5,6 +5,8 @@ import logger from 'morgan'
 import helmet from 'helmet'
 
 import indexRouter from './src/routes/index'
+import dotenv from 'dotenv'
+dotenv.config()
 import { getConnectionOrCreate } from './src/config/TypeOrm'
 import { winstonMiddleware } from './src/config/winston'
 
