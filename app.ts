@@ -10,7 +10,7 @@ dotenv.config()
 import { getConnectionOrCreate } from './src/config/TypeOrm'
 import { winstonMiddleware } from './src/config/winston'
 
-const connection  = getConnectionOrCreate()
+getConnectionOrCreate()
 const app = express()
 app.use(helmet())
 app.use(winstonMiddleware)

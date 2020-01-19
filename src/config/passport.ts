@@ -3,11 +3,13 @@ import passportLocal from 'passport-local'
 import { getRepository } from 'typeorm'
 import passportJwt from 'passport-jwt'
 import Bcrypt from 'bcrypt'
+import dotenv from 'dotenv'
 import User from '../entities/User'
+
+dotenv.config()
 
 const JwtStrategy = passportJwt.Strategy
 const LocalStrategy = passportLocal.Strategy
-const userRepository = getRepository('user')
 const ExtractJwt = passportJwt.ExtractJwt
 
 interface Options {
@@ -28,7 +30,8 @@ const opts: Options = {
 
 passport.use(
   new JwtStrategy(opts, function (jwtPayload, done) {
-    console.log(jwtPayload)
+   const userRepository = getRepository(User)
+
     userRepository
       .findOne(jwtPayload.sub)
       .then((user: User) => {
@@ -51,6 +54,8 @@ passport.use(
       passwordField: 'password'
     },
     function (username, password, done) {
+      const userRepository = getRepository(User)
+
       userRepository
         .find({ where: [{ email: username }] })
         .then((user: User | any) => {

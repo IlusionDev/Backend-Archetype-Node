@@ -6,6 +6,7 @@ import Passport from '../../../config/passport'
 
 const router = express.Router()
 
+router.use(Passport.authenticate('jwt', { session: false }))
 
 router.post('/users', checkSchema(UserValidaror), function (req, res, next) {
   const userController = new UserController(req, res, next)
